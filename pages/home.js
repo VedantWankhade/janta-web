@@ -1,20 +1,14 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+
+import Header from "../components/Header";
+import Navigation from "../components/Navigation";
 
 const Home = () => {
     return (
         <div>
-            <h1>JANTA</h1>
+            <Header />
+            <Navigation />
             <p>This is the home page.</p>
-            {/* list of links */}
-            <ul>
-                <li>
-                    <Link to='/myNotes'>My Notes</Link>
-                </li>
-                <li>
-                    <Link to='/favorites'>Favorites</Link>
-                </li>
-            </ul>
         </div>
     );
 }
