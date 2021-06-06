@@ -49,7 +49,8 @@ const SignUp = props => {
 
     // add the mutation hook
     const [signUp, { loading, error }] = useMutation(SIGNUP_USER, { onCompleted: data => {
-        console.log(data.signUp);
+            // store recieved JWT in localStorage
+            localStorage.setItem('token', data.signUp);
     }})
 
     return (
