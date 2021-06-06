@@ -3,6 +3,8 @@ import { useQuery, gql } from "@apollo/client";
 // to render markdown
 import ReactMarkdown from "react-markdown";
 
+import NoteFeed from "../components/NoteFeed";
+
 const GET_NOTES = gql`
     query NoteFeed($cursor: String) {
         noteFeed(cursor: $cursor) {
@@ -31,24 +33,7 @@ const Home = () => {
     // if error, display error message
     if (error) return <p>Sorry and error occured!</p>
     // if successfull return the data in UI
-    return (
-        <div>
-            {
-                data.noteFeed.notes.map(note =>
-                    <article key={note.id}>
-                        <img src={note.author.avatar} alt={`${note.author.username} avatar`} height='50px' />
-                        {'  '}
-                        {note.author.username} {note.createdAt} {note.favoriteCount}
-                        {'  '}
-                        <ReactMarkdown>
-                            {note.content}
-                        </ReactMarkdown>
-                        <hr/>
-                        {'  '}
-                    </article>)
-            }
-        </div>
-    );
+    return <NoteFeed notes={data.noteFeed.notes} />;
 }
 
 export default Home;
