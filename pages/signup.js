@@ -51,6 +51,8 @@ const SignUp = props => {
     const [signUp, { loading, error }] = useMutation(SIGNUP_USER, { onCompleted: data => {
             // store recieved JWT in localStorage
             localStorage.setItem('token', data.signUp);
+            // redirect user to homepage
+            props.history.push('/');
     }})
 
     return (
