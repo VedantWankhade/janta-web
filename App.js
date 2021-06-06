@@ -40,11 +40,14 @@ const client = new ApolloClient({
 
 // check for local token
 const data = {
+    // true if token exists else false (bang bang...)
     isLoggedIn: !!localStorage.getItem('token')
 };
 
 // write the cache data on initial load
 cache.writeData({ data });
+// write cache data after cache is reset
+client.onResetStore(() => cache.writeData({ data }));
 
 const App = () => {
     return (
