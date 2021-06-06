@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import Home from "./home";
 import MyNotes from "./myNotes";
 import Favorites from "./favorites";
+import NotePage from "./note";
 
 const Pages = () => {
     return (
@@ -15,6 +16,7 @@ const Pages = () => {
                 <Route exact path='/' component={Home} />
                 <Route path='/myNotes' component={MyNotes} />
                 <Route path='/favorites' component={Favorites} />
+                <Route path='/note/:id' component={NotePage} />
             </Layout>
         </Router>
     );
