@@ -28,6 +28,7 @@ const UserState = styled.div`
 `;
 
 // local query to see if user is logged in or not
+// Refer: https://www.apollographql.com/docs/react/local-state/local-state-management/
 const IS_LOGGED_IN = gql`
     {
         isLoggedIn @client

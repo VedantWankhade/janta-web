@@ -32,6 +32,10 @@ const SIGNUP_USER = gql`
 `;
 
 const SignUp = props => {
+    useEffect(() => {
+        document.title = 'Sign Up - JANTA';
+    });
+
     // set default state of the form
     const [values, setValues] = useState();
 
@@ -43,11 +47,8 @@ const SignUp = props => {
         });
     }
 
-    useEffect(() => {
-        document.title = 'Sign Up - JANTA';
-    });
-
-    // apollo client hook/state to store status of user logged in or not
+    // apollo client hook to store status of user logged in or not
+    // This client is the same client we initialized in App.js
     const client = useApolloClient();
     // add the mutation hook
     const [signUp, { loading, error }] = useMutation(SIGNUP_USER, { onCompleted: data => {

@@ -14,10 +14,12 @@ import Pages from "./pages";
 // configure our API URI and cache
 // We don't need to import and configure dotenv as parcel automatically does it
 const API_URI = process.env.API_URI;
+// Refer: https://www.apollographql.com/docs/react/caching/cache-configuration/
 const cache = new InMemoryCache();
 const httpLink = createHttpLink({ uri: API_URI });
 
 // check for a token and return the headers to the context
+//Refer: https://www.apollographql.com/docs/react/networking/authentication/#header
 const authLink = setContext((_, { headers }) => {
     return {
         headers: {

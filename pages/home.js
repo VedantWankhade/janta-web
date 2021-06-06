@@ -25,6 +25,7 @@ const GET_NOTES = gql`
 `;
 
 const Home = () => {
+    // Refer: https://www.apollographql.com/docs/react/pagination/core-api/#the-fetchmore-function
     // query hook
     const { data, loading, error, fetchMore } = useQuery(GET_NOTES);
     // if the data is loading, display loading message
