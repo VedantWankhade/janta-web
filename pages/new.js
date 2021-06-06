@@ -3,6 +3,8 @@ import { useMutation, gql } from "@apollo/client";
 
 import NoteForm from '../components/NoteForm';
 
+import { GET_NOTES } from "../gql/query";
+
 const NEW_NOTE = gql`
     mutation newNote($content: String!) {
         newNote(content: $content) {
@@ -27,7 +29,10 @@ const NewNote = props => {
         document.title = 'New Note - JANTA';
     });
 
-    const [createNote, { loading, error }] = useMutation(NEW_NOTE, { onCompleted: data => {
+    const [createNote, { loading, error }] = useMutation(NEW_NOTE, {
+        // refetch notes to prevent getting old notes from cache
+        refetchQueries: [{ query: GET_NOTES }],
+        onCompleted: data => {
             props.history.push(`note/${data.newNote.id}`);
         } })
 
