@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useQuery, gql } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 import logo from '../img/logo.svg';
 
@@ -21,11 +23,38 @@ const LogoText = styled.h1`
   display: inline;
 `;
 
-const Header = () => {
+const UserState = styled.div`
+  margin-left: auto;
+`;
+
+// local query to see if user is logged in or not
+const IS_LOGGED_IN = gql`
+    {
+        isLoggedIn @client
+    }
+`;
+
+const Header = props => {
+    // query hook for user logged in state
+    const { data } = useQuery(IS_LOGGED_IN);
+
     return (
         <HeaderBar>
             <img src={logo} alt="JANTA Logo" height='40' />
             <LogoText>JANTA</LogoText>
+            {/* If logged in, display logout link, else display sign in link */}
+            <UserState>
+                {
+                    data.isLoggedIn ? (
+                        <p>Log Out</p>
+                    ) : (
+                        <p>
+                            <Link to='/signin'>Sign In</Link> or{'  '}
+                            <Link to='/signup'>Sign Up</Link>
+                        </p>
+                    )
+                }
+            </UserState>
         </HeaderBar>
     );
 }

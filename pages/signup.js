@@ -47,10 +47,14 @@ const SignUp = props => {
         document.title = 'Sign Up - JANTA';
     });
 
+    // apollo client hook/state to store status of user logged in or not
+    const client = useApolloClient();
     // add the mutation hook
     const [signUp, { loading, error }] = useMutation(SIGNUP_USER, { onCompleted: data => {
             // store recieved JWT in localStorage
             localStorage.setItem('token', data.signUp);
+            // update the state
+            client.cache.writeData({ data: { isLoggedIn: true } });
             // redirect user to homepage
             props.history.push('/');
     }})
@@ -95,7 +99,7 @@ const SignUp = props => {
                     placeholder="Password"
                     onChange={onChange}
                 />
-                <button type="submit">Submit</button>
+                <Button type="submit">Submit</Button>
             </Form>
         </Wrapper>
     );

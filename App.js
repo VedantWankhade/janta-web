@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import {
     ApolloClient,
     ApolloProvider,
-    InMemoryCache,
     createHttpLink
 } from "@apollo/client";
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from "apollo-link-context";
 
 import GlobalStyle from "./components/GlobalStyle";
@@ -35,6 +35,14 @@ const client = new ApolloClient({
     resolvers: {},
     connectToDevTools: true
 });
+
+// check for local token
+const data = {
+    isLoggedIn: !!localStorage.getItem('token')
+};
+
+// write the cache data on initial load
+cache.writeData({ data });
 
 const App = () => {
     return (

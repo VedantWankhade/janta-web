@@ -57,7 +57,7 @@ const Home = () => {
                                             ...previousResult.noteFeed.notes,
                                             ...fetchMoreResult.noteFeed.notes
                                         ],
-                                        _typename: 'noteFeed'
+                                        __typename: 'noteFeed'
                                     }
                                 }
                             }
