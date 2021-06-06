@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useMutation, useApolloClient, gql } from "@apollo/client";
 
 import Button from "../components/Button";
 
@@ -24,6 +25,12 @@ const Form = styled.form`
   }
 `;
 
+const SIGNUP_USER = gql`
+    mutation signUp($email: String!, $username: String!, $password: String!) {
+        signUp(email: $email, username: $username, password: $password)
+    }
+`;
+
 const SignUp = props => {
     // set default state of the form
     const [values, setValues] = useState();
@@ -40,13 +47,23 @@ const SignUp = props => {
         document.title = 'Sign Up - JANTA';
     });
 
+    // add the mutation hook
+    const [signUp, { loading, error }] = useMutation(SIGNUP_USER, { onCompleted: data => {
+        console.log(data.signUp);
+    }})
+
     return (
         <Wrapper>
             <h2>Sign Up</h2>
             <Form
                 onSubmit={event => {
                         event.preventDefault();
-                        console.log(values);
+                        signUp({
+                           variables: {
+                               ...values
+                           }
+                        });
+                        event.target.reset();
                 }}
             >
                 <label htmlFor="username">Username:</label>
