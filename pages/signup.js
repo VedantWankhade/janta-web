@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import Button from "../components/Button";
@@ -25,6 +25,17 @@ const Form = styled.form`
 `;
 
 const SignUp = props => {
+    // set default state of the form
+    const [values, setValues] = useState();
+
+    // update the state when a user types in form
+    const onChange = event => {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value
+        });
+    }
+
     useEffect(() => {
         document.title = 'Sign Up - JANTA';
     });
@@ -32,13 +43,19 @@ const SignUp = props => {
     return (
         <Wrapper>
             <h2>Sign Up</h2>
-            <Form>
+            <Form
+                onSubmit={event => {
+                        event.preventDefault();
+                        console.log(values);
+                }}
+            >
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
                     id="username"
                     name="username"
                     placeholder="Username"
+                    onChange={onChange}
                 />
                 <label htmlFor="email">Email:</label>
                 <input
@@ -47,6 +64,7 @@ const SignUp = props => {
                     id="email"
                     name="email"
                     placeholder="Email"
+                    onChange={onChange}
                 />
                 <label htmlFor="password">Password:</label>
                 <input
@@ -55,6 +73,7 @@ const SignUp = props => {
                     id="password"
                     name="password"
                     placeholder="Password"
+                    onChange={onChange}
                 />
                 <button type="submit">Submit</button>
             </Form>
