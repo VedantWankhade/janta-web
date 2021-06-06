@@ -28,7 +28,11 @@ export default createGlobalStyle`
     color: #004499;
   }
   
-  code, pre {
+  pre, code {
     max-width: 100%;
+  }
+  
+  pre {
+    overflow: scroll;
   }
 `;
