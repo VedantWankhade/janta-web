@@ -19,4 +19,10 @@ const EDIT_NOTE = gql`
     }
 `;
 
-export { EDIT_NOTE };
+const DELETE_NOTE = gql`
+    mutation deleteNote($id: ID!) {
+        deleteNote(id: $id)
+    }
+`;
+
+export { EDIT_NOTE, DELETE_NOTE };
