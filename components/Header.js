@@ -54,8 +54,8 @@ const Header = props => {
                                 localStorage.removeItem('token');
                                 // clear apollo cache
                                 client.resetStore();
-                                // update the local state
-                                client.cache.writeData({ data: { isLoggedIn: false } });
+                                // // update the local state
+                                // client.cache.writeData({ data: { isLoggedIn: false } });
                                 // redirect to home page
                                 props.history.push('/');
                             }}
