@@ -33,7 +33,7 @@ const NewNote = props => {
         // refetch notes to prevent getting old notes from cache
         refetchQueries: [{ query: GET_NOTES }, { query: GET_MY_NOTES }],
         onCompleted: data => {
-            props.history.push(`note/${data.newNote.id}`);
+            props.history.push(`/note/${data.newNote.id}`);
         } })
 
     return  (
