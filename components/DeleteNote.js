@@ -12,7 +12,7 @@ const DeleteNote = props => {
         variables: {
             id: props.noteId
         },
-        refetchQueries: [{ query: GET_MY_NOTES, GET_NOTES }],
+        refetchQueries: [{ query: GET_MY_NOTES }, { query: GET_NOTES }],
         onCompleted: data => {
             props.history.push('/mynotes');
         }
