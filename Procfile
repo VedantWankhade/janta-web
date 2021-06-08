@@ -1,1 +1,1 @@
-worker: parcel build index.html --public-url ./
+worker: parcel index.html
