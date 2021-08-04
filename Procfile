@@ -1,0 +1,1 @@
+worker: parcel index.html
